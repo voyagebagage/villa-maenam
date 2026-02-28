@@ -31,6 +31,7 @@ export const rooms = [
     num: '03 / 05',
     name: 'Infinity Pool',
     desc: 'A 18-metre heated infinity pool suspended above the jungle canopy, appearing to flow seamlessly into the Gulf of Thailand at the horizon.',
+    img: '/infinity_pool.jpg',
     palette: {
       sky: ['#0A3050','#0D4A6A','#1A7A9A','#5AC8E0'],
       floor: '#E8F4F8',
