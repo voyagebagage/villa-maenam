@@ -112,7 +112,14 @@ body.hovering #cursor-ring { width: 52px; height: 52px; border-color: rgba(196, 
 body.clicking #cursor { transform: translate(-50%, -50%) scale(0.6); }
 
 /* ── Responsive ── */
-@media (max-width: 900px) {
+@media (max-width: 480px) {
   body { cursor: auto; }
   #cursor, #cursor-ring { display: none; }
+}
+
+@media (min-width: 481px) and (max-width: 900px) {
+  #cursor { width: 6px; height: 6px; }
+  #cursor-ring { width: 28px; height: 28px; }
+  body.hovering #cursor { width: 10px; height: 10px; }
+  body.hovering #cursor-ring { width: 40px; height: 40px; }
 }

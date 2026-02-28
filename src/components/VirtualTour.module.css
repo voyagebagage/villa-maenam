@@ -200,6 +200,10 @@
   opacity: 1;
 }
 
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
 @media (max-width: 900px) {
   .header { padding: 20px 30px; }
   .roomInfo { padding: 24px 30px; }

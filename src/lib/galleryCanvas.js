@@ -1,25 +1,23 @@
 /**
  * Gallery Canvas Drawing Functions
+ * Accepts canvas elements directly (ref-based) instead of querying the DOM by ID.
  */
 
-export function drawGallery() {
-  const galleryItems = [
-    { id: 'gc1', draw: drawGalleryPool },
-    { id: 'gc2', draw: drawGallerySuite },
-    { id: 'gc3', draw: drawGalleryGarden },
-    { id: 'gc4', draw: drawGalleryDining },
-    { id: 'gc5', draw: drawGallerySunrise },
-  ];
+const drawFns = [drawGalleryPool, drawGallerySuite, drawGalleryGarden, drawGalleryDining, drawGallerySunrise];
 
-  galleryItems.forEach(item => {
-    const canvas = document.getElementById(item.id);
+/**
+ * Draw all gallery canvases.
+ * @param {HTMLCanvasElement[]} canvases — array of 5 canvas elements (in order)
+ */
+export function drawGallery(canvases) {
+  canvases.forEach((canvas, i) => {
     if (!canvas) return;
     const parent = canvas.parentElement;
     canvas.width = parent.offsetWidth * 2;
     canvas.height = parent.offsetHeight * 2;
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    item.draw(canvas.getContext('2d'), canvas.width, canvas.height);
+    drawFns[i](canvas.getContext('2d'), canvas.width, canvas.height);
   });
 }
 

@@ -1,18 +1,20 @@
-import { onMount } from 'solid-js';
+import { onMount, For } from 'solid-js';
 import { drawGallery } from '../lib/galleryCanvas';
 import styles from './Gallery.module.css';
 
 const galleryItems = [
-    { id: 'gc1', label: 'Infinity Pool at Dusk' },
-    { id: 'gc2', label: 'Master Suite' },
-    { id: 'gc3', label: 'Tropical Garden' },
-    { id: 'gc4', label: 'Dining Pavilion' },
-    { id: 'gc5', label: 'Sunrise Terrace' },
+    { label: 'Infinity Pool at Dusk' },
+    { label: 'Master Suite' },
+    { label: 'Tropical Garden' },
+    { label: 'Dining Pavilion' },
+    { label: 'Sunrise Terrace' },
 ];
 
 export default function Gallery() {
+    const canvasRefs = [];
+
     onMount(() => {
-        drawGallery();
+        drawGallery(canvasRefs);
     });
 
     return (
@@ -24,14 +26,16 @@ export default function Gallery() {
                 </h2>
             </div>
             <div class={styles.grid}>
-                {galleryItems.map((item) => (
-                    <div class={`${styles.item} gallery-item`}>
-                        <canvas id={item.id}></canvas>
-                        <div class={styles.overlay}>
-                            <p class={styles.label}>{item.label}</p>
+                <For each={galleryItems}>
+                    {(item, i) => (
+                        <div class={`${styles.item} gallery-item`}>
+                            <canvas ref={(el) => (canvasRefs[i()] = el)}></canvas>
+                            <div class={styles.overlay}>
+                                <p class={styles.label}>{item.label}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    )}
+                </For>
             </div>
         </section>
     );
